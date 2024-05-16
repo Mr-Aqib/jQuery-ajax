@@ -21,6 +21,11 @@
         <input class="form-control" type="text" id="gender">
         <button class="btn formbtn btn-success w-100 my-2 py-2">Add Data</button>
     </form>
+    <!-- Search -->
+    <form class="w-25 mx-auto my-2">
+        <label for="">Search</label>
+        <input type="text" class="search form-control" id="">
+    </form>
     <!-- table -->
     <button class="getbtn btn btn-dark mx-auto d-block mt-3">Get data</button>
     <table Class='table container mx-auto text-center mt-4 text-capitalize table-striped table-dark'>
@@ -86,7 +91,22 @@
                 }
             })
         }
-        // search
+        // search from data base
+
+        $('.search').on('keyup', function() {
+            let find = $('.search').val()
+            // console.log(find)
+            $.ajax({
+                url: './search-data.php',
+                type: 'POST',
+                data: {
+                    srch: find
+                },
+                success: function(res) {
+                    $('tbody').html(res)
+                }
+            })
+        })
     </script>
 </body>
 
